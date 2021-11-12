@@ -11,21 +11,41 @@ function computerPlay() {
         return scissors;
     }
 }
+const win = "You win!";
+const lose = "You lose!";
+const draw = "Draw!";
 
 function playRound(playerSelection, computerSelection) {
-    let win = "You win!";
-    let lose = "You lose!";
-    if (playerSelection.toLowerCase() == "rock" && computerPlay == "scissors") {
+    if (playerSelection.toLowerCase() == "rock" && computerSelection == "scissors") {
         return win;
-    } else if (playerSelection.toLowerCase() == "rock" && computerPlay == "paper") {
+    } else if (playerSelection.toLowerCase() == "rock" && computerSelection == "paper") {
         return lose;
-    } else if (playerSelection.toLowerCase() == "scissors" && computerPlay == "paper") {
+    } else if (playerSelection.toLowerCase() == "scissors" && computerSelection == "paper") {
         return win;
-    } else if (playerSelection.toLowerCase() == "scissors" && computerPlay == "rock") {
+    } else if (playerSelection.toLowerCase() == "scissors" && computerSelection == "rock") {
         return lose;
-    } else if (playerSelection.toLowerCase() == "paper" && computerPlay == "rock") {
+    } else if (playerSelection.toLowerCase() == "paper" && computerSelection == "rock") {
         return win;
-    } else if (playerSelection.toLowerCase() == "paper" && computerPlay == "scissors") {
+    } else if (playerSelection.toLowerCase() == "paper" && computerSelection == "scissors") {
         return lose;
+    } else if (playerSelection.toLowerCase() == computerSelection) {
+        return draw;
     }
+}
+
+function game() {
+    let compScore=0;
+    let playerScore=0;
+    for (let i=0; i<=5; i++) {
+    let playerSelection = prompt("Choose your weapon.");
+    let computerSelection = computerPlay();
+    let result = playRound(playerSelection, computerSelection);
+    if (result == win) {
+    playerScore++;
+    } else if (result == lose) {
+    compScore++;
+    } else if (result == draw) {
+        continue;
+    }
+    } alert(`The final score for the computer is ${compScore} and the final score for you is ${playerScore} !`);
 }
